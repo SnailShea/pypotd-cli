@@ -120,7 +120,6 @@ def manage_output(args, potd, potd_date=DEFAULT_DATE):
     if args.file:
         with open(args.file, "w") as file:
             if args.output_format == "json":
-                print("123")
                 contents = dumps(output, indent=4, sort_keys=True)
                 file.write(f"{contents}\n")
             else:
@@ -130,40 +129,32 @@ def manage_output(args, potd, potd_date=DEFAULT_DATE):
                 contents = dumps(output, indent=4, sort_keys=True)
                 print(contents)
             else:
-                print("133")
                 print(output)
     else:
         if type(output) == str:
-            print("137")
             print(output)
         else:
-            print("140")
             print(dumps(output, sort_keys=True, indent=4))
 
 
 def process_args(arg_count, args):
     if arg_count == 1:
-        print("142")
         potd = generate()
         # Default to text output
         output = f"{OUTPUT_TOP}{DEFAULT_DATE}: {potd}"
         print(output)
     elif args.output_format == "json" and not \
             (args.seed or args.date or args.begin or args.end):
-        print("148")
         potd = generate()
         manage_output(args, potd)
     elif args.output_format == "json" and (args.date or args.seed):
-        print("157")
         try:
             formatted_date = date_format(args.date)
         except AttributeError:
             formatted_date = DEFAULT_DATE
         if args.seed and args.date:
-            print("158")
             potd = generate(potd_date=args.date, seed=args.seed)
         elif args.seed and not args.date:
-            print("161")
             if args.begin and args.end:
                 potd = generate_multiple(start_date=args.begin,
                                          end_date=args.end,
@@ -171,35 +162,28 @@ def process_args(arg_count, args):
             else:
                 potd = generate(seed=args.seed)
         elif args.date and not args.seed:
-            print("164")
             potd = generate(potd_date=args.date)
         manage_output(args, potd, potd_date=formatted_date)
     elif args.output_format == "text" and not \
             (args.seed or args.date or args.begin or args.end):
-        print("166")
         potd = generate()
         output = f"{OUTPUT_TOP}{DEFAULT_DATE}: {potd}"
         manage_output(args, potd)
     elif args.seed and args.date:
-        print("171")
         potd = generate(potd_date=args.date, seed=args.seed)
         manage_output(args, potd, potd_date=date_format(args.date))
     elif args.seed and not (args.date or args.begin or args.end):
-        print("175")
         potd = generate(seed=args.seed)
         manage_output(args, potd)
     elif args.date and not args.seed:
-        print("179")
         potd = generate(potd_date=args.date)
         manage_output(args, potd, potd_date=date_format(args.date))
     elif args.begin and args.end and args.seed:
-        print("183")
         potd = generate_multiple(start_date=args.begin,
                                  end_date=args.end,
                                  seed=args.seed)
         manage_output(args, potd)
     elif args.begin and args.end and not args.seed:
-        print("189")
         potd = generate_multiple(start_date=args.begin,
                                  end_date=args.end)
         manage_output(args, potd)
