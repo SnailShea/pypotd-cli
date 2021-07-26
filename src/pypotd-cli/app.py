@@ -6,6 +6,7 @@ from pypotd import (DATE_REGEX, DEFAULT_DATE, generate,
                     generate_multiple, is_valid_range)
 from sys import exit
 
+
 def date_format(date):
     date_chunks = date.split("-")
     month = date_chunks[1]
@@ -19,12 +20,13 @@ OUTPUT_TOP = "Date    : Password of the Day\n-----------------------------\n"
 _DEFAULT_DATE = DEFAULT_DATE
 DEFAULT_DATE = date_format(_DEFAULT_DATE)
 
+
 def build_parser():
     # TODO: -q, --quiet (with -f/--file only)
     # TODO: -o, --output-format (json/plain, with -f/--file only)
     parser = ArgumentParser(
         description="ARRIS Password-of-the-Day generator",
-        prog="python -m potd-cli",
+        prog="python -m pypotd-cli",
         epilog="If your seed uses special characters, you must quote it",
         add_help=False)
     parser.add_argument("-b",
@@ -118,63 +120,86 @@ def manage_output(args, potd, potd_date=DEFAULT_DATE):
     if args.file:
         with open(args.file, "w") as file:
             if args.output_format == "json":
+                print("123")
                 contents = dumps(output, indent=4, sort_keys=True)
-                file.write(f"{contents}\n") 
+                file.write(f"{contents}\n")
             else:
                 file.write(output)
         if not args.quiet:
-            print(output)
+            if args.output_format == "json":
+                contents = dumps(output, indent=4, sort_keys=True)
+                print(contents)
+            else:
+                print("133")
+                print(output)
     else:
         if type(output) == str:
+            print("137")
             print(output)
         else:
+            print("140")
             print(dumps(output, sort_keys=True, indent=4))
 
 
 def process_args(arg_count, args):
-    seed = args.seed
     if arg_count == 1:
+        print("142")
         potd = generate()
         # Default to text output
         output = f"{OUTPUT_TOP}{DEFAULT_DATE}: {potd}"
         print(output)
     elif args.output_format == "json" and not \
             (args.seed or args.date or args.begin or args.end):
+        print("148")
         potd = generate()
-        output = {}
-        output[DEFAULT_DATE] = potd
-        print(dumps(output, sort_keys=True, indent=4))
+        manage_output(args, potd)
     elif args.output_format == "json" and (args.date or args.seed):
-        output = {}
-        formatted_date = date_format(args.date) or DEFAULT_DATE
+        print("157")
+        try:
+            formatted_date = date_format(args.date)
+        except AttributeError:
+            formatted_date = DEFAULT_DATE
         if args.seed and args.date:
+            print("158")
             potd = generate(potd_date=args.date, seed=args.seed)
         elif args.seed and not args.date:
-            potd = generate(seed=args.seed)
+            print("161")
+            if args.begin and args.end:
+                potd = generate_multiple(start_date=args.begin,
+                                         end_date=args.end,
+                                         seed=args.seed)
+            else:
+                potd = generate(seed=args.seed)
         elif args.date and not args.seed:
+            print("164")
             potd = generate(potd_date=args.date)
-        output[formatted_date] = potd
         manage_output(args, potd, potd_date=formatted_date)
     elif args.output_format == "text" and not \
-        (args.seed or args.date or args.begin or args.end):
+            (args.seed or args.date or args.begin or args.end):
+        print("166")
         potd = generate()
         output = f"{OUTPUT_TOP}{DEFAULT_DATE}: {potd}"
         manage_output(args, potd)
     elif args.seed and args.date:
+        print("171")
         potd = generate(potd_date=args.date, seed=args.seed)
         manage_output(args, potd, potd_date=date_format(args.date))
     elif args.seed and not (args.date or args.begin or args.end):
+        print("175")
         potd = generate(seed=args.seed)
         manage_output(args, potd)
     elif args.date and not args.seed:
+        print("179")
         potd = generate(potd_date=args.date)
         manage_output(args, potd, potd_date=date_format(args.date))
     elif args.begin and args.end and args.seed:
+        print("183")
         potd = generate_multiple(start_date=args.begin,
                                  end_date=args.end,
                                  seed=args.seed)
         manage_output(args, potd)
     elif args.begin and args.end and not args.seed:
+        print("189")
         potd = generate_multiple(start_date=args.begin,
                                  end_date=args.end)
         manage_output(args, potd)

@@ -1,6 +1,7 @@
 from app import build_parser, check_errors, process_args
 from sys import argv
 
+
 def main():
     parser = build_parser()
     args = parser.parse_args()

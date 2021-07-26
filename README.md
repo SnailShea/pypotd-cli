@@ -1,4 +1,5 @@
 # PyPOTD CLI
+# TODO: -b -e -f -o -q -s
 
 ## Description
 Using the [pypotd](https://pypi.org/project/pypotd) library, pypotd-cli is a command-line tool
@@ -11,7 +12,7 @@ pip install pypotd-cli
 
 ## Usage
 ```
-usage: python -m potd-cli [-b BEGIN] [-d DATE] [-e END] [-f FILE] [-h]
+usage: python -m pypotd-cli [-b BEGIN] [-d DATE] [-e END] [-f FILE] [-h]
                           [-o OUTPUT_FORMAT] [-q] [-s SEED]
 
 ARRIS Password-of-the-Day generator
