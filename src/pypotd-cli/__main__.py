@@ -19,7 +19,7 @@ def build_parser():
         add_help=False,
         description="Password-of-the-Day Generator for ARRIS/CommScope Devices",
         epilog="If your seed uses special characters, you must surround it with quotes",
-        prog="pypotd-cli",
+        prog="python -m pypotd-cli",
     )
     p.formatter_class = partial(HelpFormatter, max_help_position=80)
     megroup = p.add_mutually_exclusive_group()

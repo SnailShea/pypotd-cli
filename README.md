@@ -10,7 +10,7 @@ pip install pypotd-cli
 
 ## Usage
 ```
-usage: pypotd-cli [-d DATE] [-D] [-f {json,text}] [-h] [-o OUT_FILE] [-r START END] [-s SEED] [-v]
+usage: python -m pypotd-cli [-d DATE] [-D] [-f {json,text}] [-h] [-o OUT_FILE] [-r START END] [-s SEED] [-v]
 
 Password-of-the-Day Generator for ARRIS/CommScope Devices
 
