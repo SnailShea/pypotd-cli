@@ -49,7 +49,7 @@ def build_parser():
     p.add_argument(
         "-s",
         "--seed",
-        help="string (4-8 chars), used in password generation to mutate output",
+        help="string of 4-8 characters, used in password generation to mutate output",
     )
     p.add_argument(
         "-v",

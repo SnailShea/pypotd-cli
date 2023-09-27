@@ -21,7 +21,7 @@ options:
   -h, --help                            show this help message and exit
   -o OUT_FILE, --out-file OUT_FILE      password or list will be written to given filename
   -r START END, --range START END       generate a list of passwords given start and end dates
-  -s SEED, --seed SEED                  string (4-8 chars), used in password generation to mutate output
+  -s SEED, --seed SEED                  string of 4-8 characters, used in password generation to mutate output
   -v, --verbose                         print output to console even when writing to file
 
 If your seed uses special characters, you must surround it with quotes
