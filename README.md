@@ -27,7 +27,7 @@ options:
 If your seed uses special characters, you must surround it with quotes
 ```
 
-## Examples:
+## Examples
 ### Print password for current day using custom seed
 ```
 $ python -m pypotd-cli -s test
