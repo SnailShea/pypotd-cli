@@ -1,7 +1,7 @@
 # PyPOTD CLI
 
 ## Description
-Using the [pypotd](https://pypi.org/project/pypotd) library, pypotd-cli is a command-line tool to generate single or multiple ARRIS-compatible password-of-the-day strings. Output defaults to JSON. Output can be written to a file, and will not output to console unless provided with the verbose flag.
+Using the [pypotd](https://pypi.org/project/pypotd) library, pypotd-cli is a command-line tool to generate single or multiple ARRIS/CommScope-compatible password-of-the-day strings using a default or custom seed. Output defaults to JSON. Output can be written to a file, and will not output to console unless also provided with the verbose flag.
 
 ## Installation
 ```
