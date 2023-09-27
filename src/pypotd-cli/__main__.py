@@ -111,10 +111,10 @@ def generate_output(data, out_format, out_file=None, verbose=False):
     output = format_output(data, out_format)
     if out_file:
         if verbose == True:
-            print(output)
+            print(output.rstrip("\n"))
         write_output(output, out_file)
     else:
-        print(output)
+        print(output.rstrip("\n"))
 
 
 def format_output(data, out_format):
