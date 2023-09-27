@@ -70,6 +70,10 @@ def main():
             print(str(e))
             return
         data.update(generate_multiple(start, end, seed=data["seed"]))
+    if args.date == None and args.range == None:
+        from datetime import datetime
+        date = datetime.now().isoformat()[:10]
+        data[date] = generate(date=date, seed=data["seed"])
     generate_output(data, out_format, out_file=out_file)
 
 
